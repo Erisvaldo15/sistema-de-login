@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(27,129,108,1) 75%, rgb(57, 214, 175) 100%);
+    height: 100vh;
+}
+
+main {
+    width: 25rem;
+    max-width: 90%;
+    border-radius: 1.2rem;
+    height:25rem;
+    background: rgb(11, 94, 76);
+}
+
+header { 
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    height: 4rem;
+}
+
+h1.title {
+    font-family: monospace;
+    font-size: 2rem;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 75%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.campos {
+    margin: 0.5rem auto;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+}
+
+.campos::placeholder {
+    text-align: center;
+}
+
+.btn {
+  width: 10rem;
+  margin: 0.3rem auto;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+}
+
+.btn:hover {
+    background-color: hotpink;
+    color: ivory;
+    cursor: pointer;
+}
+
+p {
+    font-family:sans-serif;
+    font-size: 0.8rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+h5 {
+    font-family: monospace;
+    font-size: 1rem;
+    color: whitesmoke;
+    text-align: center;
+}
