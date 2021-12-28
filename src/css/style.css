@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* font-size: 62.5%; Mas porque não estava funcionando? */
 }
 
 body {
@@ -68,12 +69,23 @@ h1.title {
 }
 
 .btn:hover {
-    background-color: hotpink;
+    background-color: rgb(70, 199, 65);
     color: ivory;
     cursor: pointer;
 }
 
-p {
+#btn {
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+#btn:hover {
+    background-color: rgb(153, 36, 36);
+    color: ivory;
+    cursor: pointer;
+}
+
+p:not(#message) {
     font-family:sans-serif;
     font-size: 0.8rem;
     color: rgb(255, 255, 255);
@@ -86,4 +98,98 @@ h5 {
     font-size: 1rem;
     color: whitesmoke;
     text-align: center;
+}
+
+/* Modal */
+
+#popup {
+    position: fixed;
+    background-color: #fff;
+    max-width: 90%;
+    height: inherit;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    transition: 0.5s;
+    z-index: 1;
+    visibility: hidden;
+}
+
+#popup.active{
+    visibility: visible;
+}
+
+#popup #header img{ 
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    max-width: 2rem;
+}
+
+#popup #container { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+#popup #container img {
+    max-width: 5rem;
+}
+
+a.close {
+    cursor: pointer;
+}
+
+#popup #container .title h2 {
+    font-size: 1.3rem;
+}
+
+#popup #container .text p {
+    font-size: 0.7rem;
+}
+
+#popup #container .title, .popup #container .text {
+    padding: 0.3rem;
+    text-align: justify;
+}
+
+#popup #container .input-box, input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 10rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    outline: none;
+}
+
+ .reset {
+   width: 10rem;
+   margin-top: 1rem;
+   padding: 0.5rem;
+   background-color: rgb(0, 0, 0);
+   color: honeydew;
+   border: none;
+   border-radius: 0.1rem;
+   cursor: pointer;
+}
+
+.reset:hover { 
+    background-color: rgb(0, 30, 130);
+}
+
+
+/* Responsividade */
+
+@media screen and (max-width: 300px) {
+    
+    #popup {
+        width: 45rem;
+        height: inherit;
+        max-width: 90%;
+        padding: 2rem;
+    }
+
 }
