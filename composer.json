@@ -1,0 +1,30 @@
+{
+    "name": "erisvaldo/sistema-de-login",
+    "authors": [
+        {
+            "name": "Erisvaldo",
+            "email": "erisvaldosilvadesousa38@gmail.com"
+        }
+    ],
+    "autoload": {
+
+        "psr-4": {
+            "app\\": "app"
+        },
+
+        "files": [
+            "app/helpers/message.php",
+            "app/helpers/persistedData.php",
+            "app/routes/routes.php",
+            "app/helpers/view.php",
+            "app/helpers/redirect.php"
+        ]
+    },
+    "require": {
+        "slim/slim": "^4.10",
+        "latte/latte": "^3.0",
+        "symfony/var-dumper": "^6.1",
+        "slim/psr7": "^1.5",
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
