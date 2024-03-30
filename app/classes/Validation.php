@@ -35,12 +35,12 @@ class Validation {
             switch ($type) {
 
                 case 'e':
-                    
+
                     if(empty($_POST[$field])) {
                         Message::set($field, "Empty {$field} field");
                     } 
                     
-                    else if(!filter_input(INPUT_POST, $field, FILTER_VALIDATE_EMAIL)) {
+                    else if(!filter_var($_POST[$field], FILTER_VALIDATE_EMAIL)) {
                         Message::set('email', 'Email invalid');
                         PersistedData::set($field, $_POST[$field]);
                     }
