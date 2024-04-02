@@ -8,21 +8,20 @@ use app\classes\Validation;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class LoginController extends ModelController {
+class LoginController extends ModelController
+{
 
-    public function index(Request $request, Response $response) {
-
+    public function index(Request $request, Response $response)
+    {
         view('login', [
             "title" => "Login",
         ]);
 
-        session_destroy();
-
         return $response;
     }
 
-    public function store(Request $request, Response $response) {
-
+    public function store(Request $request, Response $response)
+    {
         $data = [
             "email" => "e",
             "password" => "p",
@@ -30,29 +29,28 @@ class LoginController extends ModelController {
 
         $validated = Validation::validate($data);
 
-        if(isset($_SESSION['messages'])) {  
-            return redirect($_SERVER['HTTP_REFERER']);
+        if (isset($_SESSION['messages']) && !empty($_SESSION['messages'])) {
+            return $response->withHeader("Location", $_SERVER['HTTP_REFERER'])->withStatus(302);
         }
 
-        $findBy = $this->select->findBy('users', 'email', $validated['email'])[0];    
+        $findBy = $this->select->findBy('users', 'email', $validated['email']);
 
-        if(!$findBy) {
+        if (!$findBy) {
             Message::set('email', 'Email not found');
             PersistedData::set("email", $validated['email']);
-            return redirect('/');
+            return $response->withHeader("Location", '/')->withStatus(302);
         }
 
-        if(!password_verify($validated['password'], $findBy->password)) {
+        if (!password_verify($validated['password'], $findBy[0]->password)) {
             Message::set('password', 'Password not found');
             PersistedData::set("password", $validated['password']);
-            return redirect('/');
+            return $response->withHeader("Location", '/')->withStatus(302);
         }
 
         $_SESSION['user'] = [
-            "name" => $findBy->name,
+            "name" => $findBy[0]->name,
         ];
 
-        return redirect('/user');
+        return $response->withHeader("Location", '/user')->withStatus(302);
     }
-
 }

@@ -9,7 +9,7 @@ abstract class ModelController {
 
     protected Insert $insert;
     protected Select $select;
-    protected string|array $data;
+    protected string|array|null $data = null;
 
     public function __construct()
     {

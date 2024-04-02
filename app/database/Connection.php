@@ -11,8 +11,7 @@ class Connection {
 
         try {
             
-            return new PDO("mysql:host={$_ENV['DATABASE_HOST']}; dbname={$_ENV['DATABASE_NAME']}; 
-            charset={$_ENV['DATABASE_CHARSET']}", "{$_ENV['DATABASE_USER']}", "{$_ENV['DATABASE_PASSWORD']}");
+            return new PDO("mysql:host={$_ENV['DATABASE_HOST']}; dbname={$_ENV['DATABASE_NAME']}", "{$_ENV['DATABASE_USER']}", "{$_ENV['DATABASE_PASSWORD']}");
     
         } catch(PDOException $exe) {
             echo "<p> Mensagem de erro: <small> {$exe->getMessage()} </small> </p>";

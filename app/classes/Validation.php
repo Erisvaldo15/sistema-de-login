@@ -22,7 +22,7 @@ class Validation {
         }
        
         return $filteredFields += [
-            "created_up" => date("Y-m-d H:i:s"),
+            "created_at" => date("Y-m-d H:i:s"),
         ];
     }
 
@@ -40,7 +40,7 @@ class Validation {
                         Message::set($field, "Empty {$field} field");
                     } 
                     
-                    else if(!filter_input(INPUT_POST, $field, FILTER_VALIDATE_EMAIL)) {
+                    else if(!filter_var($_POST[$field],FILTER_VALIDATE_EMAIL)) {
                         Message::set('email', 'Email invalid');
                         PersistedData::set($field, $_POST[$field]);
                     }

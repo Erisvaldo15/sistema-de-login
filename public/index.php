@@ -22,7 +22,7 @@ try {
     $app->run();
 }
 
-catch(Throwable) {
-    echo "<span> Ops, algum falha inesperada ocorreu! Deseja <a href='/'> voltar para o início? </a> </span>";
+catch(Throwable $th) {
+    dd("{$th->getMessage()} in line: {$th->getLine()} from file {$th->getFile()}");
 }
 
