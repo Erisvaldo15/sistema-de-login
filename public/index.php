@@ -1,7 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-
 session_start();
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -20,9 +18,8 @@ try {
     routes($app);
 
     $app->run();
-}
+} 
 
-catch(Throwable $th) {
-    dd("{$th->getMessage()} in line: {$th->getLine()} from file {$th->getFile()}");
+catch (Throwable $th) {
+    dd("Error: {$th->getMessage()} in line: {$th->getLine()} from file: {$th->getFile()}");
 }
-

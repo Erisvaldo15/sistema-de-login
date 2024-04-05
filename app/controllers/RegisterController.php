@@ -26,32 +26,28 @@ class RegisterController extends ModelController
             "name" => "t",
             "email" => "e",
             "password" => "p",
-            "confirm-password" => "cp",
+            "confirmation_password" => "cp",
         ];
 
         $validated = Validation::validate($data);
 
         if (isset($_SESSION['messages']) && !empty($_SESSION['messages'])) {
-            return $response->withHeader("Location", $_SERVER['HTTP_REFERER'])->withStatus(302);
-        }
-
-        if ($validated["confirm-password"] !== $validated["password"]) {
-            Message::set("confirm-password", "Passwords not are equal");
-            PersistedData::set("confirm-password", $validated["confirm-password"]);
-            return redirect("/register", $response);
-        }
-
-        if (!empty($_SESSION["messages"])) {
             return redirect($_SERVER["HTTP_REFERER"], $response);
         }
 
+        if ($validated["confirmation_password"] !== $validated["password"]) {
+            Message::set("confirmation_password", "Passwords are not equal");
+            PersistedData::set("confirmation_password", $validated["confirmation_password"]);
+            return redirect("/register", $response);
+        }
+
         if ($this->select->findBy("users", "email", $validated["email"])) {
-            Message::set("email", "E-mail already exists");
+            Message::set("email", "E-mail already exist");
             PersistedData::set("email", $validated["email"]);
             return redirect("/register", $response);
         }
 
-        unset($validated["confirm-password"]);
+        unset($validated["confirmation_password"]);
 
         $sanitize = Validation::sanitize($validated);
 

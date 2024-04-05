@@ -8,10 +8,12 @@ use Psr\Http\Message\ResponseInterface as Response;
 class PainelUserController extends ModelController
 {
 
-    public function index(Request $request, Response $response)
-    {
-        if (!$_SESSION['user']) return redirect("/", $response);
+    public function index(Request $request, Response $response) {
 
+        if(!isset($_SESSION['user'])) {
+            return redirect('/', $response);
+        }
+        
         view('user', [
             "title" => "Welcome",
             "user" => $_SESSION['user']['name'],

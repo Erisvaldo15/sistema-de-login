@@ -13,11 +13,11 @@ class Validation {
         foreach($data as $field => $value) {
 
             if(array_key_exists('email', $data)) {
-                $filteredFields[$field] = filter_input(INPUT_POST, $field, FILTER_SANITIZE_EMAIL);
+                $filteredFields[$field] = filter_var($_POST[$field], FILTER_SANITIZE_EMAIL);
             } 
             
-            if($field !== 'created_up') {
-                $filteredFields[$field] = filter_input(INPUT_POST, $field, FILTER_SANITIZE_SPECIAL_CHARS);
+            if($field !== 'created_at') {
+                $filteredFields[$field] = filter_var($_POST[$field], FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
        
@@ -35,7 +35,7 @@ class Validation {
             switch ($type) {
 
                 case 'e':
-                    
+
                     if(empty($_POST[$field])) {
                         Message::set($field, "Empty {$field} field");
                     } 

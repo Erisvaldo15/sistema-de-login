@@ -30,7 +30,8 @@ class LoginController extends ModelController
         $validated = Validation::validate($data);
 
         if (isset($_SESSION['messages']) && !empty($_SESSION['messages'])) {
-            return $response->withHeader("Location", $_SERVER['HTTP_REFERER'])->withStatus(302);
+            dd($_SESSION['messages']);
+            return redirect($_SERVER['HTTP_REFERER'], $response);
         }
 
         $findBy = $this->select->findBy('users', 'email', $validated['email']);
@@ -38,19 +39,20 @@ class LoginController extends ModelController
         if (!$findBy) {
             Message::set('email', 'Email not found');
             PersistedData::set("email", $validated['email']);
-            return $response->withHeader("Location", '/')->withStatus(302);
+            return redirect("/", $response);
         }
 
         if (!password_verify($validated['password'], $findBy[0]->password)) {
             Message::set('password', 'Password not found');
             PersistedData::set("password", $validated['password']);
-            return $response->withHeader("Location", '/')->withStatus(302);
+            return redirect("/", $response);
         }
 
         $_SESSION['user'] = [
             "name" => $findBy[0]->name,
         ];
 
-        return $response->withHeader("Location", '/user')->withStatus(302);
+        return redirect("/user", $response);
     }
 }
+
